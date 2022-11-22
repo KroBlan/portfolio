@@ -12,15 +12,14 @@ Algorithme:
 
 document.addEventListener('DOMContentLoaded', (event) => {// When Dom is completely loaded
     console.log(event);
-    const pupilsMovement = () => {
-        // console.log("-----PUPILSMOVEMENT------")
+    var getRandomNumber = (min, max) => Math.random() * (max - min) + min;
+
+    function pupilsMovement() {
         // Creating random eye movement via css transition (First Math.random is duration, second is delay)
         let transition = "transform " + Math.random() * 3 + "s " + Math.random() * 3 + "s";
-        // console.log(transition);// To remove
         let negativeX = Math.random() < 0.5 ? "-" : "";
         let negativeY = Math.random() < 0.5 ? "-" : "";
         let move = ".move { transform: translate(" + negativeX + Math.random() * 2 + "%," + negativeY + Math.random() * 2 + "%); }"
-        // console.log(move);// To remove
         let sheetPupilsMove = document.createElement('style');
         // Inserting newly created move class in a new stylesheet for the transition
         sheetPupilsMove.innerHTML = move;
@@ -37,82 +36,117 @@ document.addEventListener('DOMContentLoaded', (event) => {// When Dom is complet
         }
     }
     
-    const eyesBlink = () => {
-        // --> Check this out -> https://developer.mozilla.org/fr/docs/Web/API/Element/animate
+    function eyesBlink() {
+        // Generating css animations
+        if (Math.random() < 0.6) { // Trigger only x% of the time
+            let blinkDuration = getRandomNumber(0.1, 0.4).toString();
+            let blinkDelay = getRandomNumber(0.1, 4.5).toString();
+            let animBlinkTop = `blink-bottom-eye-lid ${blinkDuration}s ${blinkDelay}s 2 alternate ease-in-out`;
+            let animBlinkBottom = `blink-top-eye-lid ${blinkDuration}s ${blinkDelay}s 2 alternate ease-in-out`;
 
-        // var sheetBlink = document.createElement('style');
-        let retrigger0 = (Math.random() * 10);
-        let retrigger = retrigger0 > 3 ? retrigger0 : retrigger0 + 3;
-        let blinkDuration = Math.random();
-            console.warn("!!!! eyesBlink has been called !!!!!")
-            delay = (Math.random() * 5).toString();
-            // console.log(delay);
-            let animBlinkTop = `blink-bottom-eye-lid 0.3s ${delay}s 2 alternate ease-in-out`;
-            let animBlinkBottom = `blink-top-eye-lid 0.3s ${delay}s 2 alternate ease-in-out`;
-            let t = document.getElementsByClassName('topEyeLid');
-            let b = document.getElementsByClassName('bottomEyeLid');
-            /* css animation wont retrigger unless the element is detroyed and recreated,
-            hence the removeChild and appendChild */
-            lidsFunc = (lids) => { // Tentative de mettre le for dans une fonction et y passer t et b pour éviter la répétition.
+            let topLids = document.getElementsByClassName('topEyeLid');
+            let bottomLids = document.getElementsByClassName('bottomEyeLid');
+            
+            console.warn("!!!! eyesBlink has been called !!!!!");
+            console.warn(animBlinkBottom);
+            console.warn(animBlinkTop);
+            
+            lidsMove = (lids) => {
+                /* css animation wont retrigger unless the element is detroyed and recreated,
+                hence the removeChild and appendChild */
                 for (elem of lids) {
-                    console.warn(elem)
                     let parent = elem.parentNode;
                     parent.removeChild(elem);
                     parent.appendChild(elem);
                     elem.style.animation = elem.classList.contains('topEyeLid') ? animBlinkBottom : animBlinkTop;
                 }
             }
-            lidsFunc(t);
-            // for (el of topLids) {
-            //     let parent = el.parentNode;
-            //     parent.removeChild(el);
-            //     parent.appendChild(el);
-            //     el.style.animation = animBlinkBottom;
-            // }
-            lidsFunc(b);
-            // for (el of bottomLids) {
-            //     let parent = el.parentNode;
-            //     parent.removeChild(el);
-            //     parent.appendChild(el);
-            //     el.style.animation = animBlinkTop;
-            // }
-        // setInterval(() => {
-        //     console.warn(retrigger);
-        //     // eyesBlink();
-        // }, retrigger);
+
+            lidsMove(topLids);
+            lidsMove(bottomLids);
+        } else {
+            console.warn('EYESBLINK NOT TRIGGERED !!!')
+        }
     }
 
-    // !!! TRIGGERING IS ACCELERATING, FOUND WHY THE FUCK !!!
-    // trigBlink = () => {
-    //     let retrigger0 = (Math.random() * 20000);
-    //     let retrigger = retrigger0 > 3 ? retrigger0 : retrigger0 + 3;
-    //     console.warn("retrigger----> "+retrigger);
-    //     eyesBlink();
-    //     setInterval(trigBlink, 5000);
-    // }
+    function levitate () { // Maybe we can avoid to recall document.getElement each call
+        console.warn("--- levitate called ---")
+        const robotHead = document.getElementById('machineCOPY');
+        const robotShadow = document.getElementById('shadow');
 
-    const levitate = () => {
-        console.error("levitate called")
-        const robotContainer = document.getElementById('machineCOPY');
+        const levitationTransition = "all 2s ease-in-out";// To randomize
+        robotHead.style.transition = robotShadow.style.transition = levitationTransition;
 
-        console.log(robotContainer);
 
-        const levitationTransition = "transform 5s";
-        robotContainer.style.transition = levitationTransition;
-
-        const levitationMove = ".levitationMove { transform: translate(10%, -25%); }";
+        let levitationMove = `
+        .levitationMove { transform: translate(5%, -12.5%) rotate(1.7deg); }
+        .shadowMove { transform: scaleX(1.2); }`;
         let sheetLevitation = document.createElement('style');
         sheetLevitation.innerHTML = levitationMove;
         document.body.appendChild(sheetLevitation);
         
-        robotContainer.classList.add('levitationMove');
+        robotHead.classList.add('levitationMove');
+        robotShadow.classList.add('shadowMove');
+
+        robotHead.ontransitionend = () => {
+            console.log("Levitaitiion animation END");
+            // let parent = robotHead.parentNode;
+            // parent.removeChild(robotHead);
+            // parent.appendChild(robotHead);
+            // robotHead.style.transition = levitationTransition;
+
+            levitationMove = `
+            .levitationMoveDown { transform: translate(0%, 0%) rotate(-3.7deg); }
+            .shadowMoveDown { transform: scaleX(1); }`;
+            sheetLevitation.innerHTML = levitationMove;
+            robotHead.classList.add('levitationMoveDown');
+            robotShadow.classList.add('shadowMoveDown');
+
+            robotHead.ontransitionend = () => levitate();// <--- Triggers infinite loop
+        }
+    }
+
+    function speak() {
+        // console.log(document.getElementById('speakBars'));
+        let barNum = 0;
+        let [bass, middle, high] = [[], [], []]; // One lijne declaration of multiple arrays 🤙
+        // let bass = middle = high = [];
+        // let bass = [];
+        // let middle = [];
+        // let high = [];
+        for (bar of document.getElementById('speakBars').children) {
+            console.log("----> ");
+            // console.log(bar);
+            if (barNum < 3) bass.push(bar)
+            else if (barNum >= 3 && barNum < 6) middle.push(bar)
+            else high.push(bar)
+            // if (barNum < 3) {
+            //     console.log('BASS');
+            //     bass.push(bar);
+            // } else if (barNum >= 3 && barNum < 6) {
+            //     console.log('MIDDLE');
+            //     middle.push(bar);
+            // } else {
+            //     console.log('HIGH');
+            //     high.push(bar);
+            // }
+
+            ++barNum;
+        }
+
         
+    }
+    speak();
+
+    function grabAntenna() {
+        /* Must be able to grab antenna by clicking (or swiping on touchscreens) and make it 
+        move and maybe drag the robot a little... */
     }
 
     // Pour randomiser le clignement il faut créer un num random pour le setInterval, et le passer à eyesBlink
     // pour que le delay ne dépasse pas le num random (faire en sorte que le clignement soit finit avant la fin
     // du setInterval sinon les paupières se remettent en position ouverte d'un coup).
-    var b = setInterval(eyesBlink, 5000);
+    var eyesBlinkVar = setInterval(eyesBlink, 5000);
 
     levitate();
 

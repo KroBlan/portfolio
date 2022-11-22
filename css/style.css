@@ -11,12 +11,17 @@ body {
   border: 2px solid red;
   align-items: center;
   justify-content: center;
+  transform-origin: center;
 }
 
 #robot {
   border: 2px dotted blue;
   width: 300px;
   height: 300px;
+}
+
+#shadow {
+  transform-origin: center;
 }
 
 #button-container {
