@@ -1,0 +1,67 @@
+body {
+  margin: 0 auto;
+  background: rgb(131, 127, 127);
+}
+
+#robot-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid red;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#robot {
+  border: 2px dotted blue;
+  width: 300px;
+  height: 300px;
+}
+
+#button-container {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+
+/* CLIGNEMENT DES PAUPIERES
+
+.bottomEyeLid {
+  animation: blink-bottom-eye-lid 5s 2 alternate ease-in-out;
+}
+
+.topEyeLid {
+  animation: blink-top-eye-lid 5s 2 alternate ease-in-out;
+}
+
+#pupil-R,
+#pupil-L,
+#topEyeLine, #rightEyeLine, #leftEyeLine, #bottomEyeLine {
+}
+
+.move {
+  transform: translate(3%, 5%);
+}
+*/
+
+@keyframes blink-bottom-eye-lid {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-7.95%);
+  }
+}
+
+@keyframes blink-top-eye-lid {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(7.95%);
+  }
+}
