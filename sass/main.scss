@@ -1,6 +1,26 @@
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// Always Use rem Media Queries
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// https://webdesign.tutsplus.com/tutorials/comprehensive-guide-when-to-use-em-vs-rem--cms-23984
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_propertiesx
+
+// rem and em units are computed into pixel values by the browser, based on font sizes in your design.
+// em units are based on the font size of the element they’re used on.
+// rem units are based on the font size of the html element.
+// em units can be influenced by font size inheritance from any parent element
+// rem units can be influenced by font size inheritance from browser font settings.
+// Use em units for sizing that should scale depending on the font size of an element other than the root.
+// Use rem units for sizing that doesn’t need em units, and that should scale depending on browser font size settings.
+// Use rem units unless you’re sure you need em units, including on font sizes.
+// Use rem units on media queries
+// Don’t use em or rem in multi column layout widths - use % instead.
+// Don’t use em or rem if scaling would unavoidably cause a layout element to break.
+
+
 body {
   margin: 0 auto;
-  background: rgb(131, 127, 127);
 }
 
 #robot-container {
@@ -28,6 +48,43 @@ body {
   display: flex;
   flex-direction: row;
   margin: 20px;
+}
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// Always Use rem Media Queries
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#speak {
+  box-shadow:inset 0px 1px 0px 0px #e184f3;
+	background:linear-gradient(to bottom, #c123de 5%, #a20dbd 100%);
+	background-color:#c123de;
+	border-radius:6px;
+	border:1px solid #a511c0;
+	display:inline-block;
+  margin-bottom: 3.5vh;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:2.3em;
+	font-weight:bold;
+	padding:6px 24px;
+  height: 4rem;
+  width: 12rem;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #9b14b3;
+  &:hover {
+    background:linear-gradient(to bottom, #a20dbd 5%, #c123de 100%);
+    background-color:#a20dbd;
+  }
+  &:active {
+      position:relative;
+      top:1px;
+  }
+}
+
+#speakBars > path {
+  transform: scaleY(1);
+  transform-origin: 50% 50%;
+  transition: 3s;
+  transform-box: fill-box;
 }
 
 /* CLIGNEMENT DES PAUPIERES
@@ -69,3 +126,25 @@ body {
     transform: translateY(7.95%);
   }
 }
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// Always Use rem Media Queries
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!! Index2 !!!!!!!!!!!!!!!!!! //
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 1px;
+  left: 445px;
+  top: 445px;
+  background: #C39393;
+  box-shadow: 0px 0px 6px 2px rgba(196, 147, 147, 0.25);
+}
+
+
+
+

@@ -1,0 +1,52 @@
+@font-face {
+    font-family: classroom;
+    src: url(../fonts/classroom.ttf);
+}
+
+body {
+    background-image: url(../wireframe2.svg);
+}
+
+nav {
+    list-style-type: none;
+    margin: 1.8rem 0 0 0;
+    padding: 0;
+    border: 2px solid green;
+
+    a {
+        border: 2px solid rgb(255, 15, 187);
+        font-family: classroom;
+        font-size: 2rem;
+        /* Quand le soleil se baisse, le text shadow qui donne un impression
+        de brillance pourrait aussi baisser */
+        text-shadow: 1px 1px 20px pink;
+        letter-spacing: 4px;
+        color: white;
+        text-decoration: none;
+        // font-size:;
+    }
+
+    li {
+        display: inline;
+        margin: 0 2rem;
+    }
+}
+
+// Animation of nav bar slidin in --->
+.navbar-entrance {
+    animation-duration: 5s;
+    animation-name: slidin-in;
+    animation-delay: 0.5s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes slidin-in {
+    0% {
+        margin-right: 1200px;
+    }
+
+    100% {
+        margin-right: 0;
+    }
+}
+// <---

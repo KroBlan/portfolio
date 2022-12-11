@@ -1,0 +1,9 @@
+<svg width="712" height="356" viewBox="0 0 712 356" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="sunReflection" opacity="0.6" d="M712 0C712 94.4171 674.493 184.967 607.73 251.73C540.967 318.493 450.417 356 356 356C261.583 356 171.033 318.493 104.27 251.73C37.5071 184.967 1.42566e-05 94.4171 0 5.37545e-05L356 0H712Z" fill="url(#paint0_linear_24_10)"/>
+<defs>
+<linearGradient id="paint0_linear_24_10" x1="356" y1="-356" x2="356" y2="278" gradientUnits="userSpaceOnUse">
+<stop offset="0.0885417" stop-color="#BF546A"/>
+<stop offset="1" stop-color="#010432"/>
+</linearGradient>
+</defs>
+</svg>
